@@ -1,68 +1,84 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 리덕스에서 사용되는 키워드
 
-## Available Scripts
+- 액션(Action)
 
-In the project directory, you can run:
+  어떤 업데이트를 할때 어떻게 할것인지 정의하는 객체
 
-### `yarn start`
+<pre>
+<code>
+{
+    type: "ADD_TODO",
+    data: {
+        id: 1,
+        text: "리덕스 배우기"
+    }
+}
+</code>
+</pre>
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- 액션 생성함수(Action Creator)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+  리덕스를 사용할때 액션 생성함수는 필수적이진 않지만, 나중에 액션을 생성할때 유용하다  
+  액션이 발생될때마다 그때그때 객체를 만들어줘도 된다
 
-### `yarn test`
+<pre>
+<code>
+export function addTodo(data) {
+    return {
+        type: "ADD_TODO",
+        data
+    };
+}
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+// 화살표 함수로도 만들 수 있다
+export const changeInput = text => ({
+    type: "CHANGE_INPUT",
+    text
+});
+</code>
+</pre>
 
-### `yarn build`
+- 리듀서(Reducer)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  변화를 일으키는 함수  
+  불변성을 꼭 지켜줘야한다  
+  useReducer 를 사용할때에는 일반적으로 default 에 에러를 발생시키지만, Redux 에서는 기존의 state 를 반환시킨다
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+<pre>
+<code>
+function counter(state, action) {
+    switch(action.type) {
+        case "INCREASE":
+            return state + 1;
+        case "DECREASE":
+            return state - 1;
+        default:
+            return state;
+    }
+}
+</code>
+</pre>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 스토어(Store)
 
-### `yarn eject`
+  한 앱당 하나의 스토어를 가진다  
+  스토어 안에는 현재 앱의 상태, 리듀서, 그리고 내장함수를 포함한다
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- 디스패치(dispatch)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  스토어의 내장함수 중에 하나
+  액션을 발생 또는 액션을 스토어한테 전달한다는 의미
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<pre>
+<code>
+dispatch({
+    type: "INCREASE"
+})
+</code>
+</pre>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- 구독(subscribe)
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+  스토어의 내장함수 중에 하나  
+  함수를 호출할때 파라미터로 특정 함수를 전달해주면, 액션이 디스패치 될때마다 전달된 함수가 호출된다  
+  스토어의 상태가 업데이트 될때마다 특정 함수를 호출하는 작업

@@ -109,3 +109,22 @@ dispatch({
 하나의 파일에 몰아서 작성하는 방식.  
 다른 모듈과 구별이 되게 액션 타입 앞에다가 접두사를 붙인다.
 액션 생성 함수는 export, 리듀서 함수는 export default 를 붙인다.
+
+# 리덕스 컴포넌트
+
+**- 프레젠테이셔널 컴포넌트**
+
+UI 선언 & 필요한 값이나 함수는 props 로 가져와서 사용하는 컴포넌트
+
+**- 컨테이너 컴포넌트**
+
+리덕스에 있는 상태를 조회하거나 액션을 디스패치 할 수 있는 컴포넌트
+
+**- 작동 방식**
+
+<img src="/src/img/components.jpg" width="600px" height="450px" title="컴포넌트 작동 방식" alt="components"></img><br/>
+
+**- 참조 문서**
+참조 링크 : [Google][googlelink]
+
+[googlelink]: https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0

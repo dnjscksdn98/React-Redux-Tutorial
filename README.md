@@ -102,17 +102,21 @@ dispatch({
 
 # 프로젝트에 리덕스 적용하기
 
+라이브러리 설치
+
 <pre>
 <code>
 yarn add redux react-redux
 </code>
 </pre>
 
+index.js
+
 <pre>
 <code>
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-import rootReducer from "./modules";  // 먼저 루트 리듀서를 
+import rootReducer from "./modules";  // 먼저 루트 리듀서를 만든다.
 
 const store = createStore(rootReducer);
 

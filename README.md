@@ -122,9 +122,10 @@ UI 선언 & 필요한 값이나 함수는 props 로 가져와서 사용하는 �
 
 **- 작동 방식**
 
-<img src="/src/img/components.jpg" width="600px" height="450px" title="컴포넌트 작동 방식" alt="components"></img><br/>
+<img src="/src/img/components.jpg" title="컴포넌트 작동 방식" alt="components"></img><br/>
 
 **- 참조 문서**
+
 참조 링크 : [Google][googlelink]
 
 [googlelink]: https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0

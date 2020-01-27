@@ -100,6 +100,31 @@ dispatch({
 
 동일한 인풋 -> 동일한 아웃풋
 
+# 프로젝트에 리덕스 적용하기
+
+<pre>
+<code>
+yarn add redux react-redux
+</code>
+</pre>
+
+<pre>
+<code>
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import rootReducer from "./modules";  // 먼저 루트 리듀서를 
+
+const store = createStore(rootReducer);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
+</code>
+</pre>
+
 # 리덕스 모듈
 
 **- 액션 타입, 액션 생성 함수, 리듀서를 따로따로 분리하거나 하나의 파일에 작성한 자바스크립트 파일**

@@ -147,3 +147,38 @@ import { composeWithDevTools } from "redux-devtools-extension";
 const store = createStore(rootReducer, composeWithDevTools());
 </code>
 </pre>
+
+# useSelector 최적화
+
+**- 아래의 코드에서는 매번 새로운 _객체_ 를 생성하므로 최적화가 이루어지지 않고 있다**
+
+<pre>
+<code>
+const { number, diff } = useSelector(state => ({
+    number: state.counter.number,
+    diff: state.counter.diff
+}));
+</code>
+</pre>
+
+**- 해결 방법**
+
+1. useSelector를 사용할때 하나의 상태만을 조회
+
+2. equalityFn 함수를 파라미터에 추가
+
+<pre>
+<code>
+const { number, diff } = useSelector(
+    state => ({
+      number: state.counter.number,
+      diff: state.counter.diff
+    }),
+    (left, right) => {
+      return left.number === right.number && left.diff === right.diff;
+    }
+);
+</code>
+</pre>
+
+3. shallowEqual 함수를 파라미터에 추가

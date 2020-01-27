@@ -129,3 +129,21 @@ UI 선언 & 필요한 값이나 함수는 props 로 가져와서 사용하는 �
 참조 링크 : [Google][googlelink]
 
 [googlelink]: https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0
+
+# 리덕스 개발자 도구
+
+**- 설치 방법**
+
+<pre>
+<code>
+yarn add redux-devtools-extension
+</code>
+</pre>
+
+<pre>
+<code>
+import { composeWithDevTools } from "redux-devtools-extension";   
+
+const store = createStore(rootReducer, composeWithDevTools());
+</code>
+</pre>
